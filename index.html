@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沖縄の特色：文化と自然が豊かなところ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        .slide {
+            display: none;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #3B82F6;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="container mx-auto px-4 py-8">
+        <div id="slideContainer">
+            <!-- タイトルスライド -->
+            <div class="slide active">
+                <h1 class="text-7xl font-bold mb-8 text-center animate__animated animate__fadeInDown">沖縄の魅力</h1>
+                <p class="text-4xl mb-8 text-center animate__animated animate__fadeInUp">文化と自然の調和</p>
+            </div>
+
+            <!-- はじめに -->
+            <div class="slide">
+                <h2 class="text-6xl font-bold mb-12 text-center">はじめに</h2>
+                <ul class="text-3xl space-y-8 list-disc list-inside">
+                    <li class="animate__animated animate__fadeInLeft">沖縄県：日本最南端にある県</li>
+                    <li class="animate__animated animate__fadeInLeft animate__delay-1s">昔は琉球王国と呼ばれていた</li>
+                    <li class="animate__animated animate__fadeInLeft animate__delay-2s">亜熱帯気候がもたらす豊かな自然</li>
+                </ul>
+            </div>
+
+            <!-- 文化 -->
+            <div class="slide">
+                <h2 class="text-6xl font-bold mb-12 text-center">独特な文化</h2>
+                <div class="grid grid-cols-1 gap-8 text-2xl">
+                    <div class="bg-white bg-opacity-20 p-8 rounded-lg">
+                        <h3 class="text-4xl font-semibold mb-4">言語</h3>
+                        <p>沖縄の方言は琉球王国から受け継がれたもの</p>
+                    </div>
+                    <div class="bg-white bg-opacity-20 p-8 rounded-lg">
+                        <h3 class="text-4xl font-semibold mb-4">芸能</h3>
+                        <p>エイサー、琉球舞踊の伝統</p>
+                    </div>
+                    <div class="bg-white bg-opacity-20 p-8 rounded-lg">
+                        <h3 class="text-4xl font-semibold mb-4">工芸</h3>
+                        <p>琉球ガラス、紅型（びんがた）</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 自然 -->
+            <div class="slide">
+                <h2 class="text-6xl font-bold mb-12 text-center">豊かな自然環境</h2>
+                <ul class="text-3xl space-y-8 list-disc list-inside">
+                    <li class="animate__animated animate__fadeInUp">美しいビーチと珊瑚礁</li>
+                    <li class="animate__animated animate__fadeInUp animate__delay-1s">マングローブ林と亜熱帯雨林</li>
+                    <li class="animate__animated animate__fadeInUp animate__delay-2s">固有種：イリオモテヤマネコ、ヤンバルクイナ</li>
+                </ul>
+            </div>
+
+            <!-- 食文化 -->
+            <div class="slide">
+                <h2 class="text-6xl font-bold mb-12 text-center">独自の食文化</h2>
+                <div class="grid grid-cols-1 gap-8 text-2xl">
+                    <div>
+                        <h3 class="text-4xl font-semibold mb-4">長寿食</h3>
+                        <ul class="list-disc list-inside space-y-4">
+                            <li>ゴーヤーチャンプルー</li>
+                            <li>ラフテー</li>
+                            <li>海ぶどう</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-semibold mb-4">織物</h3>
+                        <p>沖縄の伝統的な織物・紅型（びんがた）</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- まとめ -->
+            <div class="slide">
+                <h2 class="text-6xl font-bold mb-12 text-center">沖縄の特色</h2>
+                <ul class="text-3xl space-y-8 list-disc list-inside">
+                    <li class="animate__animated animate__fadeInLeft">豊かな文化と歴史</li>
+                    <li class="animate__animated animate__fadeInLeft animate__delay-1s">美しい自然環境</li>
+                    <li class="animate__animated animate__fadeInLeft animate__delay-2s">独自の食文化</li>
+                    <li class="animate__animated animate__fadeInLeft animate__delay-3s">温かいくて優しい人々</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="fixed bottom-4 right-4 flex space-x-4">
+            <button id="prevSlide" class="bg-white text-blue-500 px-6 py-3 rounded-full shadow-lg hover:bg-blue-100 transition duration-300 text-xl">前へ</button>
+            <button id="nextSlide" class="bg-white text-blue-500 px-6 py-3 rounded-full shadow-lg hover:bg-blue-100 transition duration-300 text-xl">次へ</button>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevButton = document.getElementById('prevSlide');
+        const nextButton = document.getElementById('nextSlide');
+        const progressBar = document.getElementById('progressBar');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            slides[index].classList.add('active');
+            currentSlide = index;
+            updateProgressBar();
+        }
+
+        function nextSlide() {
+            showSlide((currentSlide + 1) % slides.length);
+        }
+
+        function prevSlide() {
+            showSlide((currentSlide - 1 + slides.length) % slides.length);
+        }
+
+        function updateProgressBar() {
+            const progress = (currentSlide / (slides.length - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        updateProgressBar();
+    </script>
+</body>
+</html>
